@@ -1,0 +1,592 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+
+<script type="text/javascript">
+    function calcPrice() {
+  var price = 0;
+  $("input[type=radio][data-price]:checked").each(function(i, el) {
+    price += +$(el).data("price");
+  });
+  $("#price").text(price);
+}
+
+$("input[type=radio]").on("change", calcPrice);
+calcPrice();
+
+
+function incrementValue1()
+{
+    var value = parseInt(document.getElementById('number1').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number1').value = value;}
+function incrementValue2()
+{
+    var value = parseInt(document.getElementById('number2').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number2').value = value;}
+function incrementValue3()
+{
+    var value = parseInt(document.getElementById('number3').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number3').value = value;}
+function incrementValue4()
+{
+    var value = parseInt(document.getElementById('number4').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number4').value = value;}
+function incrementValue5()
+{
+    var value = parseInt(document.getElementById('number5').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number5').value = value;
+}
+function incrementValue11()
+{
+    var value = parseInt(document.getElementById('number1').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value--;
+    document.getElementById('number1').value = value;}
+function incrementValue22()
+{
+    var value = parseInt(document.getElementById('number2').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value--;
+    document.getElementById('number2').value = value;}
+function incrementValue33()
+{
+    var value = parseInt(document.getElementById('number3').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value--;
+    document.getElementById('number3').value = value;}
+function incrementValue44()
+{
+    var value = parseInt(document.getElementById('number4').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value--;
+    document.getElementById('number4').value = value;}
+function incrementValue55()
+{
+    var value = parseInt(document.getElementById('number5').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value--;
+    document.getElementById('number5').value = value;
+
+}
+
+
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<style>
+   .project-tab {
+    padding: 10%;
+    margin-top: -8%;
+}
+.project-tab #tabs{
+    background: white;
+    color: #eee;
+}
+.project-tab #tabs h6.section-title{
+    color: yellow;
+}
+.project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #8a0303;
+    background-color: white;
+    
+    border-bottom: 3px solid !important;
+    font-size: 16px;
+    font-weight: bold;
+}
+.project-tab .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+.project-tab .nav-link:hover {
+    border: none;
+}
+.project-tab thead{
+    background: #f3f3f3;
+    color: #333;
+}
+.project-tab a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+
+
+h1 {
+  color: hsla(215, 5%, 10%, 1);
+  margin-bottom: 2rem;
+}
+section {
+  display: flex;
+  flex-flow: row wrap;
+}
+section > div {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+input[type="radio"] {
+  display: none;
+  &:not(:disabled) ~ label {
+    cursor: pointer;
+  }
+  &:disabled ~ label {
+    color: hsla(150, 5%, 75%, 1);
+    border-color: hsla(150, 5%, 75%, 1);
+    box-shadow: none;
+    cursor: not-allowed;
+
+  }
+}
+label {
+  height: 100%;
+  display: block;
+  background: white;
+  border: 2px solid hsla(150, 75%, 50%, 1);
+  border-radius: 20px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  //margin: 1rem;
+  text-align: center;
+  box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
+  position: relative;
+}
+input[type="radio"]:checked + label {
+  background: hsla(150, 75%, 50%, 1);
+  color: hsla(215, 0%, 100%, 1);
+  box-shadow: 0px 0px 20px hsla(150, 100%, 50%, 0.75);
+  &::after {
+    color: hsla(215, 5%, 25%, 1);
+    font-family: FontAwesome;
+    border: 2px solid hsla(150, 75%, 45%, 1);
+    content: "\f00c";
+    font-size: 24px;
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0px 2px 5px -2px hsla(0, 0%, 0%, 0.25);
+  }
+}
+
+
+p {
+  font-weight: 900;
+}
+
+
+@media only screen and (max-width: 700px) {
+  section {
+    flex-direction: column;
+  }
+}
+
+[type="date"] {
+  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+/* custom styles */
+
+input {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 3px 5px;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+  width: 190px;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  text-align:center;
+}
+
+
+
+table {
+  color: #333;
+  font-size: .9em;
+  font-weight: 300;
+  line-height: 40px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid #ed1c40;
+  width: 500px;
+  margin: 50px auto;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,.16);
+  border-radius: 2px;
+}
+
+
+input[type="button"] {
+    transition: all .3s;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 15px;
+    display:inline;
+    width:20px;
+}
+
+input[type="button"]:not(.active) {
+    background-color:transparent;
+
+}
+
+
+
+input[type="button"]:hover:not(.active) {
+    background-color: #ddd;
+}
+.radio-toolbar {
+  margin: 10px;
+}
+
+.radio-toolbar input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.radio-toolbar label {
+    display: inline-block;
+    background-color: #ddd;
+    padding: 10px 20px;
+    font-family: sans-serif, Arial;
+    font-size: 16px;
+    border: 2px solid #444;
+    border-radius: 4px;
+}
+
+.radio-toolbar label:hover {
+  background-color: #dfd;
+}
+
+.radio-toolbar input[type="radio"]:focus + label {
+    border: 2px dashed #444;
+}
+
+.radio-toolbar input[type="radio"]:checked + label {
+    background-color: lightblue;
+    border-color: #4c4;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid black;
+  text-align: center;
+  font-size: 30px;
+}
+
+</style>
+</head>
+<body>
+   
+<form class="order_now_form" method="post" action="/ordernowsubmission/">
+        {% csrf_token %}
+
+                        <br>
+                        <br>
+
+
+
+<div class="container">
+   
+    <hr>
+    
+    <div class="row">
+        <div class="panel panel-primary filterable">
+            <div class="panel-heading">
+                <h4 class="panel-title"style="color: yellow">Previous Orders</h4>
+                
+            </div>
+            <table border="1" class="table" id="data" style="width:70rem;background-color: white">
+                <tbody>
+                    <tr class="filters"style="background-color: yellow">
+                        <th>Order ID</th>
+                        <th>Tiffin Type</th>
+                        <th>Sub Type</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Amount</th>
+                    </tr>
+                    {% for getdata in OrderNow%}
+                    <tr>
+                        
+                        <td>{{getdata.ordernow_id}}</td>
+                        <td>{{getdata.tiffin_type}}</td>
+                        <td>{{getdata.subtiffin_type}}</td>
+                        <td>{{getdata.from_date}}</td>
+                        <td>{{getdata.to_date}}</td>
+                        <td>{{getdata.total_amount}}</td>
+
+                    </tr>
+                   {% endfor%}
+               </tbody>
+            </table>
+            
+        </div>
+
+    </div>
+</div>
+
+</div>
+<script type="text/javascript">
+
+var $table = document.getElementById("data"),
+// number of rows per page
+$n = 5,
+// number of rows of the table
+$rowCount = $table.rows.length,
+// get the first cell's tag name (in the first row)
+$firstRow = $table.rows[0].firstElementChild.tagName,
+// boolean var to check if table has a head row
+$hasHead = ($firstRow === "TH"),
+// an array to hold each row
+$tr = [],
+// loop counters, to start count from rows[1] (2nd row) if the first row has a head tag
+$i,$ii,$j = ($hasHead)?1:0,
+// holds the first row if it has a (<TH>) & nothing if (<TD>)
+$th = ($hasHead?$table.rows[(0)].outerHTML:"");
+// count the number of pages
+var $pageCount = Math.ceil($rowCount / $n);
+// if we had one page only, then we have nothing to do ..
+if ($pageCount > 1) {
+    // assign each row outHTML (tag name & innerHTML) to the array
+    for ($i = $j,$ii = 0; $i < $rowCount; $i++, $ii++)
+        $tr[$ii] = $table.rows[$i].outerHTML;
+    // create a div block to hold the buttons
+    $table.insertAdjacentHTML("afterend","<div id='buttons'></div");
+    // the first sort, default page is the first one
+    sort(1);
+}
+
+// ($p) is the selected page number. it will be generated when a user clicks a button
+function sort($p) {
+    /* create ($rows) a variable to hold the group of rows
+    ** to be displayed on the selected page,
+    ** ($s) the start point .. the first row in each page, Do The Math
+    */
+    var $rows = $th,$s = (($n * $p)-$n);
+    for ($i = $s; $i < ($s+$n) && $i < $tr.length; $i++)
+        $rows += $tr[$i];
+    
+    // now the table has a processed group of rows ..
+    $table.innerHTML = $rows;
+    // create the pagination buttons
+    document.getElementById("buttons").innerHTML = pageButtons($pageCount,$p);
+    // CSS Stuff
+    document.getElementById("id"+$p).setAttribute("class","active");
+}
+
+
+// ($pCount) : number of pages,($cur) : current page, the selected one ..
+function pageButtons($pCount,$cur) {
+    /* this variables will disable the "Prev" button on 1st page
+       and "next" button on the last one */
+    var $prevDis = ($cur == 1)?"disabled":"",
+        $nextDis = ($cur == $pCount)?"disabled":"",
+        /* this ($buttons) will hold every single button needed
+        ** it will creates each button and sets the onclick attribute
+        ** to the "sort" function with a special ($p) number..
+        */
+        $buttons = "<input type='button' value='&lt;&lt;' onclick='sort("+($cur - 1)+")' "+$prevDis+">";
+    for ($i=1; $i<=$pCount;$i++)
+        $buttons += "<input type='button' id='id"+$i+"'value='"+$i+"' onclick='sort("+$i+")'>";
+    $buttons += "<input type='button' value='&gt;&gt;' onclick='sort("+($cur + 1)+")' "+$nextDis+">";
+    return $buttons;
+}
+</script>
+
+<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+    
+   <select>
+        <option disabled="false" selected>--Select Tiffin Type--</option>
+        <option>School Tiffin</option>
+        <option>Office Tiffin</option>
+        <option>Lunch Tiffin</option>
+        <option>Dinner Tiffin</option>
+    </select>
+    <div class="radio-toolbar">
+    <input type="radio" id="radioApple" name="radioFruit" value="v" checked>
+    <label for="radioApple">Vegetarian</label>
+
+    <input type="radio" id="radioBanana" name="radioFruit" value="m">
+    <label for="radioBanana">Mixed</label>
+
+    <input type="radio" id="radioOrange" name="radioFruit" value="pv">
+    <label for="radioOrange">Premium Veg</label>
+
+    <input type="radio" id="radioOrange2" name="radioFruit" value="pm">
+    <label for="radioOrange2">Premium Mixed</label> 
+    </div>
+    <div class="grid-container">
+        {% for emp in menudisplay%}
+    <div>1{{emp.mname}}</div>
+    {% endfor%}
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+  <div>12</div>
+  <div>13</div>
+  <div>14</div>
+  <div>15</div>
+  <div>16</div>
+  <div>17</div>
+  <div>18</div>
+  <div>19</div>  
+  <div>20</div>
+  <div>21</div>
+  <div>22</div>
+  <div>23</div>
+  <div>24</div>
+  <div>25</div>
+  <div>26</div>
+  <div>27</div>  
+  <div>28</div>
+  <div>29</div>
+  <div>30</div>
+  <div>31</div>
+  
+</div>
+</div>
+
+
+
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <footer class="page-footer font-small unique-color-dark">
+
+  <div style="background-color: yellow;height:0.1rem;">
+    <div class="container">
+
+    </div>
+  </div>
+
+  <div class="container text-center text-md-left mt-5">
+
+    <div class="row mt-3">
+
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" style="color:yellow">
+
+        <h6 class="text-uppercase font-weight-bold">Chapati Roti Factory</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+          consectetur
+          adipisicing elit.</p>
+
+      </div>
+
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4"style="color:yellow">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">Products</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a href="#!"style="color:yellow">Veg Menu</a>
+        </p>
+        <p>
+          <a href="#!"style="color:yellow">Non-Veg Menu</a>
+        </p>
+        <p>
+          <a href="#!"style="color:yellow">Corporate Orders</a>
+        </p>
+
+      </div>
+
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4"style="color:yellow">
+
+        <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="color:yellow">
+        <p>
+          <a href="#!"style="color:yellow">Your Account</a>
+        </p>
+        <p>
+          <a href="#!"style="color:yellow">Menu Plans</a>
+        </p>
+        <p>
+          <a href="#!"style="color:yellow">Discounts</a>
+        </p>
+        <p>
+          <a href="#!"style="color:yellow">Support</a>
+        </p>
+
+      </div>
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"style="color:yellow">
+        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <i class="fas fa-home mr-0"></i>Keshav Nagar, near Mundhwa Bridge, Pune-411014, Maharashtra, India</p>
+        <p>
+          <i class="fas fa-envelope mr-0"></i> info@example.com</p>
+        <p>
+          <i class="fas fa-phone mr-0"></i> +91- 9999999999 </p>
+        <p>
+          <i class="fas fa-print mr-0"></i> +91- 9999999999</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright text-center py-3"style="color:yellow">© 2020 Copyright:
+    <a href="https://deepvalleysystems.com/"> Deepvalleysystems.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
+
+{% endblock %}
+̣

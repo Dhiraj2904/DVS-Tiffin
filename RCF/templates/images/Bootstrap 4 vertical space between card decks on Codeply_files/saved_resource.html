@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!-- saved from url=(0012)about:srcdoc -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Codeply">
+  <title>Codeply simple HTML/CSS/JS preview</title>
+  <!--<base target="_self">--><base href="." target="_self"> 
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">  
+  
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+
+  <style>.head1{
+font-size: 40px;font-weight: bold; text-align: center; color: yellow;
+
+}
+.meal-btm{
+font-size: 25px;font-weight: bold; text-align: center; color: yellow;
+}
+.head2{
+  display:table-cell;
+}
+.btn {
+  
+  border-radius: 25rem;
+  width: 8rem;
+  font-weight: bold;
+}
+
+</style>
+</head>
+<body>
+  <div class="card school-card" style="width:20%">
+
+  <!-- Card image -->
+  <div class="view overlay">
+    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img%20(5).jpg" alt="Card image cap">
+    <a href="https://www.codeply.com/go/29IGJHkqVd/bootstrap-4-vertical-space-between-card-decks#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body">
+
+    <!-- Title -->
+    <h4 class="card-title font-weight-bold"><a>School Tiffin</a></h4>
+    <!-- Data -->
+    
+      <p class="card-text">Order for 5 Tiffins and get 10% discount. Pay only Rs. 225 instead of Rs. 250. **GST extra</p>
+    <hr class="my-4">
+    
+    <a href="https://www.codeply.com/go/29IGJHkqVd/bootstrap-4-vertical-space-between-card-decks#" class="btn btn-primary p-0 mx-5 mb-0">Select</a>
+
+  </div>
+</div>
+
+
+<div class="card school-card" style="width:20%">
+
+  <!-- Card image -->
+  <div class="view overlay">
+    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img%20(5).jpg" alt="Card image cap">
+    <a href="https://www.codeply.com/go/29IGJHkqVd/bootstrap-4-vertical-space-between-card-decks#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body">
+
+    <!-- Title -->
+    <h4 class="card-title font-weight-bold"><a>School Tiffin</a></h4>
+    <!-- Data -->
+    
+      <p class="card-text">Order for 5 Tiffins and get 10% discount. Pay only Rs. 225 instead of Rs. 250. **GST extra</p>
+    <hr class="my-4">
+    
+    <a href="https://www.codeply.com/go/29IGJHkqVd/bootstrap-4-vertical-space-between-card-decks#" class="btn btn-primary p-0 mx-5 mb-0">Select</a>
+
+  </div>
+</div>
+
+
+<div class="newuser">
+<h1> Helllo</h1>
+</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+
+  <script>
+  
+  </script>
+  <script>
+    // prevent navigation
+    document.addEventListener("DOMContentLoaded", function() {
+      var links = document.getElementsByTagName("A");
+      for(var i=0; i < links.length; i++) {
+        links[i].addEventListener("click", function(e) {
+          var href = this.getAttribute("href")
+
+          if (!href) {
+            return
+          }
+
+          if (href==='#') {
+            // hash only ('#')
+            console.debug('Internal nav allowed by Codeply');
+          }
+          else if (this.hash) {
+            // hash with tag ('#foo')
+            var element = null
+            try {
+              element = document.querySelector(this.hash)
+            }
+            catch(e) {
+              console.debug('Codeply internal nav querySelector failed')
+            }
+            if (element) {
+              // scroll to anchor
+              e.preventDefault();
+              const top = element.getBoundingClientRect().top + window.pageYOffset
+              window.scrollTo({top, behavior: 'smooth'})
+              console.debug('Internal nav anchor controlled by Codeply');
+            }
+            else {
+              // allow javascript routing
+              console.debug('Internal nav route allowed by Codeply');
+            }
+          }
+          else if (href.indexOf("/p/")===0 || href.indexOf("/v/")===0) {
+            // special multi-page routing
+            console.debug('Special internal page route: ' + href)
+
+            var l = href.replace('/p/','/v/')
+
+            // reroute
+            e.preventDefault()
+            var newLoc = l + '?from=internal'
+            console.debug('Internal view will reroute to ' + newLoc) 
+            location.href = newLoc
+          }
+          else if (href.indexOf("./")===0) {
+            // special multi-page routing
+            console.debug('Special internal ./ route: ' + href)
+
+            var u = parent.document.URL.split("/")
+            var pn = href.split("/")[1]
+            var plyId = u[u.length-1]
+
+            if (plyId.indexOf('?from')>-1) {
+              // already rerouted this
+              console.debug('already rerouted')
+              plyId = u[u.length-2]
+            }
+
+            var l = plyId + '/' + pn
+            
+            console.debug(u)
+            console.debug(pn)
+            console.debug('l',l)
+
+            // reroute
+            e.preventDefault()
+            var newLoc = '/v/' + l + '?from=internal'
+            console.debug('Internal page will reroute to ' + newLoc) 
+            location.href = newLoc
+          }
+          else {
+            // no external links
+            e.preventDefault();
+            console.debug('External nav prevented by Codeply');
+          }
+          return false;
+        })
+      }
+    }, false);
+  </script>
+
+
+</body></html>

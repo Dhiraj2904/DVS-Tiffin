@@ -1,0 +1,741 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+
+<html>
+<head>
+
+  <title>Place Order</title>
+  <script type="text/javascript">
+        $(function () {
+            $("#fdate").datepicker();
+            $("#fdate").change(function () {
+                $("#phone").html($("#fdate").val());
+            });
+        });
+    </script>
+<script>
+
+
+function CalculateItemsValue() {
+    var total = 0;
+    var total_items = 3;
+    for (i=1; i<=total_items; i++) {
+         
+        itemID = document.getElementById("qnt_"+i);
+        if (typeof itemID === 'undefined' || itemID === null) {
+            alert("No such item - " + "qnt_"+i);
+        } else {
+            total = total + parseInt(itemID.value) * parseInt(itemID.getAttribute("data-price"));
+        }
+         
+    }
+    document.getElementById("ItemsTotal").innerHTML = "Rs." + total;
+     
+}
+
+
+$(document).ready(function(){
+  
+    $("#c1").hide();
+  });
+
+
+	$(function () {
+    $(".datepicker").datepicker();
+ });
+
+$(function () {
+    $("#datepicker").datepicker();
+ });
+
+
+	function s1(){
+	$(document).ready(function(){
+	$("input[id='control_01']:checked").val("School Tiffin")
+	$('#fname').val($("input[id='control_01']:checked").val())
+	})
+}
+function s2(){
+	$(document).ready(function(){
+	$("input[id='control_02']:checked").val("Office Tiffin")
+	$('#fname').val($("input[id='control_02']:checked").val())
+	})
+}
+function s3(){
+	$(document).ready(function(){
+	$("input[id='control_03']:checked").val("Lunch Tiffin")
+	$('#fname').val($("input[id='control_03']:checked").val())
+	})
+}
+function s4(){
+	$(document).ready(function(){
+	$("input[id='control_04']:checked").val("Dinner Tiffin")
+	$('#fname').val($("input[id='control_04']:checked").val())
+	})
+}
+
+function s11(){
+	$(document).ready(function(){
+	$("input[id='control_07']:checked").val("Vegetarian")
+	$('#lname').val("Vegetarian")
+	$('#v1').val("80")
+	
+	})
+}
+function s22(){
+	$(document).ready(function(){
+	$("input[id='control_08']:checked").val("Mixed")
+	$('#lname').val("Mixed")
+	$('#v1').val("90")
+	
+	})
+}
+function s33(){
+	$(document).ready(function(){
+	$("input[id='control_09']:checked").val("Premium Veg")
+	$('#lname').val("Premium Veg")
+	$('#v1').val("80")
+	
+	})
+}
+function s44(){
+	$(document).ready(function(){
+	$("input[id='control_10']:checked").val("Premium Mixed")
+	$('#lname').val("Premium Mixed")
+	$('#v1').val("90")
+	
+	})
+}
+function s55(){
+	$(document).ready(function(){
+	$("input[id='v2']").val()
+	$('#amt').val($("input[id='v2']").val())
+	})
+}
+function s66(){
+	$(document).ready(function(){
+	$("input[id='fdate']").val()
+	$('#email').val($("input[id='fdate']").val())
+	})
+}
+function s67(){
+	$(document).ready(function(){
+	$("input[id='tdate']").val()
+	$('#phone').val($("input[id='tdate']").val())
+	})
+}
+function s68(){
+	$(document).ready(function(){
+	$("input[id='v2']").val()
+	$('#amt').val($("input[id='v2']").val())
+	})
+}
+
+var jobValue = document.getElementsById('v2')[0].value;
+$('#amt').val(jobValue)
+
+	
+	
+
+function overlay() {
+	el = document.getElementById("overlay");
+	el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+}
+
+function update() {
+    document.getElementById('v1').value = document.getElementById('v2').value;
+}
+
+
+$('input[name="tiffin_type"]').change( function() {
+		
+		if ($('#control_05').is(":checked")){
+
+			$('#firstAccordion').collapse('show');
+		
+		} else {
+			
+			$('#firstAccordion').collapse('hide');
+		}
+        
+		if ($('#control_06').is(":checked")){
+
+			$('#secondAccordion').collapse('show');
+		
+		} else {
+			
+			$('#firstAccordion').collapse('hide');
+		}
+
+  });
+
+    $(document).ready(            
+          function () {
+              $("#dtinput").datepicker({ showWeek: true, firstDay :1,                  
+                  showOtherMonths: true,
+                  selectOtherMonths: true,
+                  minDate: '0d', dateFormat: "dd-mm-yy"
+              });
+          }
+        );
+    
+
+
+function myFunction() {
+  var a= document.getElementById("fdate").val();
+  $('#email').val(a)
+}
+$('#date1').datepicker({
+    changeMonth: true,
+    changeYear: true,
+    showButtonPanel: true,
+    dateFormat: "m/d/yy"
+});
+
+</script>
+
+</head>
+
+<style>
+
+.project-tab {
+    padding: 10%;
+    margin-top: -8%;
+}
+.project-tab #tabs{
+    background: white;
+    color: #eee;
+}
+.project-tab #tabs h6.section-title{
+    color: yellow;
+}
+.project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #8a0303;
+    background-color: white;
+    
+    border-bottom: 3px solid !important;
+    font-size: 16px;
+    font-weight: bold;
+}
+.project-tab .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+.project-tab .nav-link:hover {
+    border: none;
+}
+.project-tab thead{
+    background: #f3f3f3;
+    color: #333;
+}
+.project-tab a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+
+
+#c1 div {
+    display:none;
+}
+
+section {
+  display: inline-flex;
+  
+  
+}
+section > div {
+  flex: 1;
+  padding: 0.5rem;
+  
+}
+
+input[type="radio"] {
+  display: none;
+  &:not(:disabled) ~ label {
+    cursor: pointer;
+
+  }
+  &:disabled ~ label {
+    color: hsla(150, 5%, 75%, 1);
+    border-color: hsla(150, 5%, 75%, 1);
+    box-shadow: none;
+    cursor: not-allowed;
+
+  }
+}
+label {
+  height: 100%;
+  display: block;
+  background: white;
+  border: 2px solid hsla(150, 75%, 50%, 1);
+  border-radius: 20px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  //margin: 1rem;
+  text-align: center;
+  box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
+  position: relative;
+  height:230px;
+  width:230px;
+}
+input[type="radio"]:checked + label {
+  background: hsla(150, 75%, 50%, 1);
+  color: hsla(215, 0%, 100%, 1);
+  box-shadow: 0px 0px 20px hsla(150, 100%, 50%, 0.75);
+  &::after {
+    color: hsla(215, 5%, 25%, 1);
+    font-family: FontAwesome;
+    border: 2px solid hsla(150, 75%, 45%, 1);
+    content: "\f00c";
+    font-size: 24px;
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0px 2px 5px -2px hsla(0, 0%, 0%, 0.25);
+
+  }
+}
+
+
+p {
+  font-weight: 500;
+
+}
+
+
+@media only screen and (max-width: 700px) {
+  section {
+    flex-direction: column;
+  }
+}
+
+
+/* custom styles */
+
+input {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 3px 5px;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+  width: 190px;
+}
+hr{
+	position: relative; 
+            top: 20px; 
+            border: none; 
+            height: 1px; 
+            background: black; 
+            margin-bottom: 50px;
+}
+.form-control{
+	width:100px;
+	text-align: center;
+}
+.modal-dialog,
+.modal-content {
+    /* 80% of window height */
+    height: 100%;
+    background-color:#BBD6EC;
+}
+     
+.modal-header {
+    background-color: #337AB7;
+    padding:16px 16px;
+    color:#FFF;
+    border-bottom:2px dashed #337AB7;
+ }
+</style>
+
+<body>
+
+<hr>
+<h2 style="color:yellow;font-size:25px">Select Meal Type</h2>
+<br>
+
+<form method="POST"id="f1">
+	{% csrf_token %}
+
+<section>
+	<div>
+    
+      <input type="radio" id="control_01" name="tiffin_type" value="School Tiffin" onclick="s1()"checked>
+      <label class="radio-inline" for="control_01">
+        <h2 style="font-size:20px">School Tiffin</h2>
+        <img style="width:60px"src="https://cdn4.iconfinder.com/data/icons/school-icon-set-1/512/1-512.png">
+        <p>Monday to Friday<br>Delivery before 6:30am or as per instructions.<br> Non-Veg or Veg</p>
+      </label>
+      
+    </div>
+    <div>
+    
+      <input type="radio" id="control_02" name="tiffin_type" value="Office Tiffin" onclick="s2()">
+      <label class="radio-inline" for="control_02">
+        <h2 style="font-size:20px">Office Tiffin</h2>
+        <img style="width:60px"src="https://cdn4.iconfinder.com/data/icons/school-icon-set-1/512/1-512.png">
+        <p>Monday to Friday<br>Delivery before 6:30am or as per instructions.<br> Non-Veg or Veg</p>
+      </label>
+      
+    </div>
+    <div>
+      <input type="radio" id="control_03" name="tiffin_type" value="Lunch Tiffin" onclick="s3()">
+      <label for="control_03">
+        <h2 style="font-size:20px">Lunch Tiffin</h2>
+        <img style="width:60px"src="https://cdn3.iconfinder.com/data/icons/ui-thick-outline-4-of-5/100/ui_07_of_9-20-512.png">
+        <p>Monday to Saturday<br>Delivery before 2pm or as per instructions.<br> Non-Veg or Veg</p>
+      </label>
+    </div>
+    <div>
+      <input type="radio" id="control_04" name="tiffin_type" value="Dinner Tiffin" onclick="s4()">
+      <label for="control_04">
+        <h2 style="font-size:20px">Dinner Tiffin</h2>
+        <img style="width:60px"src="https://static.thenounproject.com/png/78880-200.png">
+        <p>Monday to Saturday<br>Delivery before 9:30pm or as per instructions.<br> Non-Veg or Veg</p>
+      </label>
+    </div>
+    
+    <section>
+    <div>
+      <input type="radio" id="control_05" name="tiffin_type" value="A-la-Carta Tiffin"data-toggle="modal" data-target="#myModal1">
+      <label for="control_05">
+        <h2 style="font-size:20px">A-la-Carta Tiffin</h2>
+        <img style="width:60px"src="https://i.pinimg.com/originals/3d/13/af/3d13af8f930ad8437cb5284eca96241a.png">
+        <p>Monday to Saturday<br>Delivery before 2pm or as per instructions.<br> Non-Veg or Veg.</p>
+      </label>
+    </div>
+    <div>
+      <input type="radio" id="control_06" name="tiffin_type" value="Party Order"data-toggle="modal" data-target="#myModal2">
+      <label for="control_06">
+        <h2 style="font-size:20px">Party Order</h2>
+        <img style="width:60px"src="https://i.pinimg.com/originals/9a/ec/32/9aec32c02c8708de263ec58bfc0beede.png">
+        <p>Monday to Saturday<br>Delivery before 9:30pm or as per instructions.<br> Non-Veg or Veg.</p>
+      </label>
+    </div>
+
+</section>
+
+</section>
+     
+<br>
+<br>
+
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+              	<h5 class="modal-title" id="myModalLabel">Select Your Menu Here..</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+              	<table>
+              	<tr>
+             	<td>Roti
+             	<select>
+             		{% for result in carta%}
+             		<option>{{result.cmenu}}</option>
+             		{% endfor%}
+             	</select>
+             	<select>
+             		{% for result in carta%}
+             		<option>{{result.camount}}</option>
+             		{% endfor%}
+             	</select>
+             	
+               	<td><input name="qnt_1" type="text" id="qnt_1" value="0" size="3" data-price="10" onkeyup="CalculateItemsValue()"></td>
+             
+               	<td></td>
+               	
+               	</td>
+           		</tr>
+          		<tr>
+             	<td>Sabji
+             		<select>
+             		{% for result in carta%}
+             		<option>{{result.sabji}}</option>
+             		{% endfor%}
+             	</select>
+               	<td><input name="qnt_2" type="text" id="qnt_2" value="0" size="3" data-price="8"onkeyup="CalculateItemsValue()"></td>
+               	<td>Rs.8</td>
+               </td>
+           		</tr>
+           		<tr>
+             	<td>Sweets
+             		<select>
+             		{% for result in carta%}	
+             		<option>{{result.sweets}}</option>
+             		{% endfor%}
+             	</select>
+               	<td><input name="qnt_3" type="text" id="qnt_3" value="0" size="3" data-price="40"onkeyup="CalculateItemsValue()"></td>
+               	<td>Rs.40</td>
+               </td>
+           		</tr>
+               </table>
+               <div id="ItemsTotal">Total Rs.0</div>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+
+$('input[name="tiffin_type"]').change(function() {
+   if($(this).is(':checked') && $(this).val() == 'A-la-Carta Tiffin') {
+   		$('#myModal').modal('show');
+   }
+});
+</script>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Contact Us for Party Orders</h4>
+              </div>
+              <div class="modal-body modal-xl" style="text-align:center;">
+              	Contact us on 999999999/1234567892.<br>
+       Our Executive will visit at appointed time<br>
+       and take order as per your requirements.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+
+$('input[name="tiffin_type"]').change(function() {
+   if($(this).is(':checked') && $(this).val() == 'Party Order') {
+   		$('#myModal1').modal('show');
+   }
+});
+</script>
+
+     
+
+
+<hr>
+    <h2 style="color:yellow;font-size:25px">Select Veg or Non-Veg&hellip;</h2>
+<section class="abc" style="display:inline-flex-center">
+    <div class="unit-toggler">
+        
+      <input type="radio" id="control_07" name="subtiffin_type" value="Vegetarian" onclick="s11()"checked>
+      <label for="control_07">
+        <h2 style="font-size:25px">Vegetarian</h2>
+        <img style="width:60px"src="https://www.shareicon.net/data/512x512/2016/05/04/759589_food_512x512.png">
+         <p>Price per Veg-Meal<br> Rs.80</p>
+      </label>
+
+    </div>
+    
+    <div>
+      <input type="radio" id="control_08" name="subtiffin_type" value="Mixed"onclick="s22()">
+      <label for="control_08">
+        <h2 style="font-size:25px">Mixed</h2>
+        <img style="width:60px"src="https://cdn.onlinewebfonts.com/svg/img_443351.png">
+        <p>Price per Veg-Meal<br> Rs.80<br>Price per Non-Veg Meal<br> Rs.90</p>
+      </label>
+    </div>
+    <div>
+      <input type="radio" id="control_09" name="subtiffin_type" value="Premium Veg"onclick="s33()">
+      <label for="control_09">
+        <h2 style="font-size:25px">Premium Veg</h2>
+        <img style="width:60px"src="https://www.shareicon.net/data/512x512/2016/05/04/759589_food_512x512.png">
+        <p>Price per Meal<br> Rs.80</p>
+      </label>
+    </div>
+    <div>
+      <input type="radio" id="control_10" name="subtiffin_type" value="Premium Mixed"onclick="s44()">
+      <label for="control_10">
+        <h2 style="font-size:25px">Premium Mixed</h2>
+        <img style="width:60px"src="https://cdn.onlinewebfonts.com/svg/img_443351.png">
+        <p>Price per Veg-Meal<br> Rs.80<br>Price per Non-Veg Meal<br> Rs.90</p>
+      </label>
+    </div>
+
+
+    </section>
+
+    
+
+
+    <section>
+<hr width="1" size="300">
+<div>
+
+
+    <h2 style="text-align: center;color:yellow;font-size:25px">Select From and To dates&hellip;</h2><br>
+  <input type="date" id="fdate"name="from_date" style="width:15rem"onchange="s66(),CalculateDiff(),s68()">
+
+
+  <input type="date" id="tdate"name="to_date" style="width:15rem"onchange="s67(),CalculateDiff(),s68()">
+</div>
+
+
+</section>
+
+<br>
+<hr>
+
+	<p style="color:yellow;text-align: center">Price per Tiffin: Rs.<input type="text" id="v1" name="total_amount"style="width: 100px"></p>
+	
+	<p style="color:yellow;text-align: center">Total Amount: Rs.<input type="text" id="v2" name="total_amount2"style="width: 100px"/></p>
+	<input type="button" name="btn" value="View Summary" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"style="border-radius: 2rem"/>
+	<input type="submit" id="submitBtn"value="Order Now"/style="border-radius: 2rem"onclick="update()">
+
+
+
+<div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog"role="document">
+<div class="modal-content">
+
+<div class="modal-body"><h3>Your Order Details</h3>
+<!-- We display the details entered by the user here -->
+<p>Tiffin Type: <strong id="fnameM"></strong> </p>
+<p>Category:  <strong id="lnameM"></strong></p>
+<p>From: <strong id="emailM"></strong> </p>
+<p>To:  <strong id="phoneM"></strong></p>
+<p>Total Amount: <strong id="addressM1"></strong> </p>
+<p>Your order details will be emailed to your registered email ID with us. Please check your email after placing the order. </p>
+</div> <!-- end modal body -->
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+</div>
+</div>
+</div>
+</div>  <!-- end of modal -->
+
+</div> 
+
+
+
+<script type="text/javascript">
+function CalculateDiff() {
+ 
+    if($("#fdate").val()!="" && $("#tdate").val()!=""){
+ 
+var From_date = new Date($("#fdate").val());
+var To_date = new Date($("#tdate").val());
+var diff_date =  To_date - From_date;
+ 
+var days = Math.floor(diff_date /(1000 * 60 * 60 * 24));
+$("#v2").val(days* $("#v1").val())
+//alert( years+" year(s) "+months+" month(s) "+days+" and day(s)");
+}
+
+}
+</script>
+<br>
+
+{% if messages %}
+{% for message in messages %}
+<h2 style="color:green;">{{message}}</h2>
+{% endfor %}
+{% endif %}
+</form>
+</div>
+
+
+
+
+
+<div class="container mt-5" id="c1">
+<form role="form" id="formEntry" name="formEntry" method="post" onsubmit="return entry_check()" action="">
+<section class="form-row mb-2">
+<div class="form-group col-md-6">
+<label for="fname">First Name</label>
+<input type="text" name="firstName" id="fname" class="form-control" value="" />
+</div>
+
+<div class="form-group col-md-6">
+<label for="lname">Last Name</label>
+<input type="text" name="lastName" id="lname" class="form-control" value="" />
+</div>
+</section> <!-- end of row -->
+
+<section class="form-row mb-3">
+<div class="form-group col-md-4">
+<label for="email">Email</label>
+<input type="email" name="email" id="email" class="form-control" value="" />
+</div>
+
+<div class="form-group col-md-4">
+<label for="phone">Phone</label>
+<input type="tel" name="phone" id="phone" class="form-control" value="" />
+</div>
+</section> <!-- end of row -->
+
+
+<div class="form-group col-md-4">
+<label for="amt">amt</label>
+<input type="tel" name="amount" id="amt" class="form-control" value="" />
+</div>
+</section>
+
+</form>  <!-- end of form -->
+
+<!-- PREVIEW MODAL -->
+<!-- end of container -->
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+<!-- Display the input values in the modal -->
+<script>
+$('#submitBtn').click(function () {
+
+$('#fnameM').html($('#fname').val());
+$('#lnameM').html($('#lname').val());
+$('#emailM').html($('#email').val());
+$('#phoneM').html($('#phone').val());
+
+$('#addressM1').html($('#amt').val());
+
+});
+
+$('#submit').click(function () {
+	$('#fnameM').html($('#fname').val());
+$('#lnameM').html($('#lname').val());
+$('#emailM').html($('#email').val());
+$('#phoneM').html($('#phone').val());
+
+$('#addressM1').html($('#amt').val());
+/* when the submit button in the modal is clicked, submit the form */
+alert('Your form has been submitted');
+$('#f1').submit();
+});
+
+
+
+</script>
+
+
+
+
+
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<html>
+<head>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+  $(function () {
+        $("#ddlPassport").change(function () {
+            if ($(this).val() == "st") {
+                $("#dvPassport").show();
+            } else {
+                $("#dvPassport").hide();
+            }
+           
+        });
+    });
+  $(function () {
+        $("#ddlPassport").change(function () {
+            if ($(this).val() == "ot") {
+                $("#dvPassport1").show();
+            } else {
+                $("#dvPassport1").hide();
+            }
+           
+        });
+    });
+  $(function () {
+        $("#ddlPassport").change(function () {
+            if ($(this).val() == "lt") {
+                $("#dvPassport2").show();
+            } else {
+                $("#dvPassport2").hide();
+            }
+           
+        });
+    });
+  $(function () {
+        $("#ddlPassport").change(function () {
+            if ($(this).val() == "dt") {
+                $("#dvPassport3").show();
+            } else {
+                $("#dvPassport3").hide();
+            }
+           
+        });
+    });
+</script>
+</head>
+<style>
+input[type="button"]:hover:not(.active) {
+    background-color: #ddd;
+}
+.radio-toolbar {
+  margin: 10px;
+}
+
+.radio-toolbar input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.radio-toolbar label {
+    display: inline-block;
+    background-color: #ddd;
+    padding: 10px 20px;
+    font-family: sans-serif, Arial;
+    font-size: 16px;
+    border: 2px solid #444;
+    border-radius: 4px;
+}
+
+.radio-toolbar label:hover {
+  background-color: #dfd;
+}
+
+.radio-toolbar input[type="radio"]:focus + label {
+    border: 2px dashed #444;
+}
+
+.radio-toolbar input[type="radio"]:checked + label {
+    background-color: lightblue;
+    border-color: #4c4;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid black;
+  text-align: center;
+  font-size: 30px;
+}
+
+</style>
+<br>
+<br>
+<div class="container" style="text-align: center">
+  <h2>Select the type of Tiffin</h2>
+<select id="ddlPassport">
+        <option disabled="false" selected>--Select Tiffin Type--</option>
+        <option value="st">School Tiffin</option>
+        <option value="ot">Office Tiffin</option>
+        <option value="lt">Lunch Tiffin</option>
+        <option value="dt">Dinner Tiffin</option>
+</select>
+<br>
+<br>
+<div id="dvPassport">
+        <table border="1" class="table" id="data" style="width:70rem;background-color: white">
+                <tbody>
+                    <tr class="filters"style="background-color: yellow">
+                      <th>Date</th>
+                      <th>Vegetarian</th>
+                      <th>Mixed</th>
+                      <th>Premium Veg</th>
+                      <th>Premium Mixed</th>
+                    </tr>
+                    {% for getdata in menudisplay%}
+                    <tr>
+                        <td>{{getdata.mdate}}</td>
+                       
+                        <td>{{getdata.Vegetarian}}</td>
+                        <td>{{getdata.Mixed}}</td>
+                        <td>{{getdata.Premium_Veg}}</td>
+                        <td>{{getdata.Premium_Mixed}}</td>
+                    </tr>
+                   {% endfor%}
+               </tbody>
+            </table>
+</div>
+
+<div id="dvPassport1">
+        <table border="1" class="table" id="data" style="width:70rem;background-color: white">
+                <tbody>
+                    <tr class="filters"style="background-color: yellow">
+                      <th>Date</th>
+                      <th>Vegetarian</th>
+                      <th>Mixed</th>
+                      <th>Premium Veg</th>
+                      <th>Premium Mixed</th>
+                    </tr>
+                    {% for getdata in otdisplay%}
+                    <tr>
+                        <td>{{getdata.odate1}}</td>
+                       
+                        <td>{{getdata.Vegetarian1}}</td>
+                        <td>{{getdata.Mixed1}}</td>
+                        <td>{{getdata.Premium_Veg1}}</td>
+                        <td>{{getdata.Premium_Mixed1}}</td>
+                    </tr>
+                   {% endfor%}
+               </tbody>
+            </table>
+</div>
+<div id="dvPassport2">
+        <table border="1" class="table" id="data" style="width:70rem;background-color: white">
+                <tbody>
+                    <tr class="filters"style="background-color: yellow">
+                      <th>Date</th>
+                      <th>Vegetarian</th>
+                      <th>Mixed</th>
+                      <th>Premium Veg</th>
+                      <th>Premium Mixed</th>
+                    </tr>
+                    {% for getdata in ltdisplay%}
+                    <tr>
+                        <td>{{getdata.ldate}}</td>
+                       
+                        <td>{{getdata.Vegetarian}}</td>
+                        <td>{{getdata.Mixed}}</td>
+                        <td>{{getdata.Premium_Veg}}</td>
+                        <td>{{getdata.Premium_Mixed}}</td>
+                    </tr>
+                   {% endfor%}
+               </tbody>
+            </table>
+</div>
+
+<div id="dvPassport3">
+        <table border="1" class="table" id="data" style="width:70rem;background-color: white">
+                <tbody>
+                    <tr class="filters"style="background-color: yellow">
+                      <th>Date</th>
+                      <th>Vegetarian</th>
+                      <th>Mixed</th>
+                      <th>Premium Veg</th>
+                      <th>Premium Mixed</th>
+                    </tr>
+                    {% for getdata in dtdisplay%}
+                    <tr>
+                        <td>{{getdata.ddate}}</td>
+                       
+                        <td>{{getdata.Vegetarian}}</td>
+                        <td>{{getdata.Mixed}}</td>
+                        <td>{{getdata.Premium_Veg}}</td>
+                        <td>{{getdata.Premium_Mixed}}</td>
+                    </tr>
+                   {% endfor%}
+               </tbody>
+            </table>
+</div>
+
+
+
+{% endblock %}
