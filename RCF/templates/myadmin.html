@@ -1,0 +1,32 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Example of Auto Loading Bootstrap Modal on Page Load</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#myModal").modal('show');
+	});
+</script>
+</head>
+<body>
+<form method="POST" id="add_form" action="{% url 'loginpage' %}">{% csrf_token %}
+    {% block content %}
+        Username:
+                <input type="text" name="username" value="" id="username" size="50" />
+            <br />
+                Password:
+                <input type="password" name="password" value="" id="password" size="50" />
+                <br />
+        <input type="submit" name="submit" value="submit" />
+    </form>
+    
+    {% endblock %}
+
+</body>
+</html>                            

@@ -1,0 +1,179 @@
+
+
+{% block content %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Chapati Roti Factory</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  	$('.file-upload').file_upload();
+  	
+  </script>
+  <script>
+
+  function downloadCSV(csv, filename) {
+    var csvFile;
+    var downloadLink;
+
+    // CSV file
+    csvFile = new Blob([csv], {type: "text/csv"});
+
+    // Download link
+    downloadLink = document.createElement("a");
+
+    // File name
+    downloadLink.download = filename;
+
+    // Create a link to the file
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+
+    // Hide download link
+    downloadLink.style.display = "none";
+
+    // Add the link to DOM
+    document.body.appendChild(downloadLink);
+
+    // Click download link
+    downloadLink.click();
+}
+function exportTableToCSV(filename) {
+    var csv = [];
+    var rows = document.querySelectorAll("table tr");
+    
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll("td, th");
+        
+        for (var j = 0; j < cols.length; j++) 
+            row.push(cols[j].innerText);
+        
+        csv.push(row.join(","));        
+    }
+
+    // Download CSV file
+    downloadCSV(csv.join("\n"), filename);
+}
+
+
+  </script>
+</head>
+<style>
+.sections {display:none;}
+.sections:target {display:block;}
+}
+
+#navbar li {
+  display: inline;
+  [COLOR="Red"]padding-right: 30px;[/COLOR]
+}
+
+</style>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">Chapati Roti Factory</a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+     <li class="home" style="padding:10px"><a href="#1">Upload Menu</a></li>
+     <li class="overview"style="padding:10px"><a href="#2">Upload A-La-Carta Menu</a></li>
+     <li class="reports"style="padding:10px"><a href="#3">Reports</a></li>
+     <li class="logout" style="padding:10px"><a href="{% url 'logout' %}" style="color:red">Logout</a></li>
+  </ul>
+
+</nav>
+<br>
+<br>
+<form method='POST' action="{% url 'myadmin/demo:readexcel' %}">
+  {% csrf_token %}
+<div class="container">
+	<div class="d1" id="1">
+	<p> This will upload the monthly menu for all tiffins like School Tiffin, Office Tiffin, Lunch Tiffin and Dinner Tiffin</p>
+  {% for row in excel_data %}
+  {% for cell in row %}
+  {{ cell }}&nbsp;&nbsp;
+  {% endfor %}
+  <br>
+  {% endfor %}
+  <div class="file-upload-wrapper">
+  Select a file to upload: <input type="file" id="input-file-now" class="file-upload" name="excel_file" />
+  <input type="submit" value="submit"/>
+	</div>
+</form>
+	
+
+	
+</script>
+
+	<!-- 2nd DIV -->
+
+	<div class="d2" id="2">
+	<p> This will upload the monthly menu A-La-Carta Tiffin</p>
+  <div class="file-upload-wrapper">
+  Select a file to upload: <input type="file" id="input-file-now" class="file-upload" />
+  <input type="submit" value="submit"/>
+	</div>
+	</div>
+
+	<!-- 3rd DIV -->
+
+	<div class="d3" id="3">
+		<button onclick="exportTableToCSV('OrderReport.csv')">Export To Excel</button>
+	<table border="1" class="table" id="data" style="width:70rem;background-color: white">
+                <tbody>
+                    <tr class="filters"style="background-color: yellow">
+                      <th>Order ID</th>
+                      <th>Tiffin Type</th>
+                      <th>SubTiffin Type</th>
+                      <th>From</th>
+                      <th>To</th>
+                      <th>Amount</th>
+                    </tr>
+                    {% for getdata in OrderNow%}
+                    <tr>
+                        <td>{{getdata.ordernow_id}}</td>
+                        <td>{{getdata.tiffin_type}}</td>
+                        <td>{{getdata.subtiffin_type}}</td>
+                        <td>{{getdata.from_date}}</td>
+                        <td>{{getdata.to_date}}</td>
+                        <td>{{getdata.total_amount}}</td>
+                    </tr>
+                   {% endfor%}
+               </tbody>
+    </table>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+ 	$("#1").show();
+ 	$("#2").hide();
+    $("#3").hide();
+$("li.home").click(function () {
+    $("#1").show();
+    $("#2").hide();
+    $("#3").hide();
+});
+
+$("li.overview").click(function () {
+    $("#2").show();
+    $("#1").hide();
+    $("#3").hide();
+});
+$("li.reports").click(function () {
+    $("#2").hide();
+    $("#1").hide();
+    $("#3").show();
+});
+    });
+</script>
+</body>
+</html>
+
+
+{% endblock %}

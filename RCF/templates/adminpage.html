@@ -16,22 +16,92 @@
     </script>
 <script>
 
+	function myFunction() {
+  var x = document.getElementById("myDiv");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+} 
 
-function CalculateItemsValue() {
-    var total = 0;
-    var total_items = 3;
-    for (i=1; i<=total_items; i++) {
-         
-        itemID = document.getElementById("qnt_"+i);
-        if (typeof itemID === 'undefined' || itemID === null) {
-            alert("No such item - " + "qnt_"+i);
-        } else {
-            total = total + parseInt(itemID.value) * parseInt(itemID.getAttribute("data-price"));
-        }
-         
-    }
-    document.getElementById("ItemsTotal").innerHTML = "Rs." + total;
-     
+
+function myGeeks() { 
+            var str = $("#ddlselect3").val(); 
+            var matches = str.match(/(\d+)/); 
+              
+            if (matches) { 
+                document.getElementById('t1').value
+                        = matches[0]; 
+    
+            } 
+        } 
+function myGeeks2() { 
+            var str = $("#ddlselect").val(); 
+            var matches = str.match(/(\d+)/); 
+              
+            if (matches) { 
+                document.getElementById('t2').value 
+                        = matches[0]; 
+    
+            } 
+        } 
+function myGeeks3() { 
+            var str = $("#ddlselect2").val(); 
+            var matches = str.match(/(\d+)/); 
+              
+            if (matches) { 
+                document.getElementById('t3').value 
+                        = matches[0]; 
+    
+            } 
+        } 
+
+function getd()
+{
+
+	var x = document.getElementById("ddlselect").value;
+	var y=document.getElementById("qnt_2").value;
+  document.getElementById("lblmess").innerHTML = " " + x;
+}
+function getd2()
+{
+
+	var x = document.getElementById("ddlselect2").value;
+	var y=document.getElementById("qnt_3").value;
+  document.getElementById("lblmess2").innerHTML = " "  + x;
+}
+function getd3()
+{
+
+	var x = document.getElementById("ddlselect3").value;
+	var y=document.getElementById("qnt_1").value;
+  document.getElementById("lblmess3").innerHTML = " "  + x;
+}
+
+
+function calculate1() {
+		myBox1 = document.getElementById('t1').value;	
+		myBox2 = document.getElementById('qnt_1').value;
+		myBox3 = document.getElementById('t2').value;	
+		myBox4 = document.getElementById('qnt_2').value;
+		myBox5 = document.getElementById('t3').value;	
+		myBox6 = document.getElementById('qnt_3').value;
+		
+		document.getElementById('ItemsTotal').innerHTML = (myBox1 * myBox2)+(myBox3 * myBox4)+(myBox5 * myBox6);
+  
+	}
+
+	document.getElementById('l3').addEventListener('click', function(){
+  document.getElementById('qnt_1').value = this.innerHTML;
+});
+function calc(){
+
+    $("#qnt_1").keyup(function () {
+
+    $('#ItemsTotal').val($('#qnt_1').val() * 2);
+
+});
 }
 
 
@@ -198,6 +268,26 @@ $('#date1').datepicker({
 </head>
 
 <style>
+.abc {
+    border: solid 1px #DDEEEE;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 13px Arial, sans-serif;
+}
+.abc th {
+    background-color: #DDEFEF;
+    border: solid 1px #DDEEEE;
+    color: #336B6B;
+    padding: 5px;
+    text-align: left;
+    text-shadow: 1px 1px 1px #fff;
+}
+.abc td {
+    border: solid 1px #DDEEEE;
+    color: #333;
+    padding:2px;
+    text-shadow: 1px 1px 1px #fff;
+}
 
 .project-tab {
     padding: 10%;
@@ -346,10 +436,12 @@ hr{
 	width:100px;
 	text-align: center;
 }
-.modal-dialog,
+.modal-dialog{
+  height:100%;
+}
 .modal-content {
     /* 80% of window height */
-    height: 100%;
+    height: 60%;
     background-color:#BBD6EC;
 }
      
@@ -410,7 +502,7 @@ hr{
     
     <section>
     <div>
-      <input type="radio" id="control_05" name="tiffin_type" value="A-la-Carta Tiffin"data-toggle="modal" data-target="#myModal1">
+      <input type="radio" id="control_05" name="tiffin_type" value="A-la-Carta Tiffin"data-toggle="modal" data-target="#myModal1" onclick="myFunction()">
       <label for="control_05">
         <h2 style="font-size:20px">A-la-Carta Tiffin</h2>
         <img style="width:60px"src="https://i.pinimg.com/originals/3d/13/af/3d13af8f930ad8437cb5284eca96241a.png">
@@ -433,67 +525,17 @@ hr{
 <br>
 <br>
 
-        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-              	<h5 class="modal-title" id="myModalLabel">Select Your Menu Here..</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-body">
-              	<table>
-              	<tr>
-             	<td>Roti
-             	<select>
-             		{% for result in carta%}
-             		<option>{{result.cmenu}}</option>
-             		{% endfor%}
-             	</select>
-             	<select>
-             		{% for result in carta%}
-             		<option>{{result.camount}}</option>
-             		{% endfor%}
-             	</select>
-             	
-               	<td><input name="qnt_1" type="text" id="qnt_1" value="0" size="3" data-price="10" onkeyup="CalculateItemsValue()"></td>
-             
-               	<td></td>
-               	
-               	</td>
-           		</tr>
-          		<tr>
-             	<td>Sabji
-             		<select>
-             		{% for result in carta%}
-             		<option>{{result.sabji}}</option>
-             		{% endfor%}
-             	</select>
-               	<td><input name="qnt_2" type="text" id="qnt_2" value="0" size="3" data-price="8"onkeyup="CalculateItemsValue()"></td>
-               	<td>Rs.8</td>
-               </td>
-           		</tr>
-           		<tr>
-             	<td>Sweets
-             		<select>
-             		{% for result in carta%}	
-             		<option>{{result.sweets}}</option>
-             		{% endfor%}
-             	</select>
-               	<td><input name="qnt_3" type="text" id="qnt_3" value="0" size="3" data-price="40"onkeyup="CalculateItemsValue()"></td>
-               	<td>Rs.40</td>
-               </td>
-           		</tr>
-               </table>
-               <div id="ItemsTotal">Total Rs.0</div>
-              </div>
+<script>
 
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div>
+	function myFunction() {
+  var x = document.getElementById("myDiv");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+} 
+</script>
         <script type="text/javascript">
 
 $('input[name="tiffin_type"]').change(function() {
@@ -501,7 +543,28 @@ $('input[name="tiffin_type"]').change(function() {
    		$('#myModal').modal('show');
    }
 });
+
+
 </script>
+<div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">A-La-Carta Order.</h4>
+      </div>
+      <div class="modal-body">
+        <p>Here you can choose your own menu from various options we update every month.</p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" href="templates/index.html">Proceed to Place Order</a>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog modal-dialog-scrollable" role="document">

@@ -1,32 +1,178 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+    function abc(){
+        document.getElementById('myframe').src=this.value
+    }
 
+    function myGeeks() { 
+            var str = $("#name").val(); 
+            var matches = str.match(/(\d+)/); 
+              
+            if (matches) { 
+                document.getElementById('amt').value
+                        = matches[0]; 
+    
+            } 
+        } 
+</script>
+</head>
+<style>
+   tr {
+     border-style:solid; 
+            border-width:1px; 
+            border-color:#000000; 
+            padding: 10px;
+    }
+  
+    th {
+      border-style:solid; 
+            border-width:1px; 
+            border-color:#000000; 
+            padding: 10px;
+      }
+      
+      
+    td {
+      border-style:solid; 
+            border-width:1px; 
+            border-color:#000000; 
+            padding: 10px;
+    }
+  
+    th, td {
+    
+}
+
+
+
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  span {color: #167F92;}
+}
+
+body{
+    background-color: #ff726f;
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+label{
+    font-weight: bold;
+    font-size: 20px;
+}
+</style>
+
+
+<p align="center" style="font-weight: bold;font-size: 30px">Place you A-La-Carta order here...</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A-La-Carta Order</title>
+<style>
+    form{
+        margin: 20px 0;
+    }
+    form input, button{
+        padding: 5px;
+    }
+    table{
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+    table, th, td{
+        border: 1px solid #cdcdcd;
+    }
+    table th, table td{
+        padding: 10px;
+        text-align: left;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    
+    $(document).ready(function(){
+        $(".add-row").click(function(){
+            var name = $("#name").val();
+            var email = $("#email").val();
+            var amt=$('#amt').val()*$('#email').val();
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + name + "</td><td>" + email + "</td><td>" + amt + "</td></tr>";
+            $("table tbody").append(markup);
+
+          
+        });
+        
+        // Find and remove selected table rows
+        $(".delete-row").click(function(){
+            $("table tbody").find('input[name="record"]').each(function(){
+                if($(this).is(":checked")){
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });  
+
+   function calculateSum() {
+       
+     
+       var table=document.getElementById("table"), sumVal = 0;
+       for(var i=1; i<table.rows.length; i++)
+       {
+            sumVal=sumVal+parseFloat(table.rows[i].cells[3].innerHTML);
+
+       }
+     $('#totalamount').val(sumVal)
+      
+       }
+  
+</script>
 </head>
 <body>
-
-<table border="1">
-                
-                    <tr class="filters"style="background-color: yellow">
-                        <th>Order ID</th>
-                        <th>Tiffin Type</th>
-                        <th>Sub Type</th>
-                        <th>From</th>
-                        <th>To</th>
-                        <th>Amount</th>
-                    </tr>
-                    {% for getdata in EmpInsert%}
-                    <tr>
-                        
-                        <td>{{getdata.ordernow_id}}</td>
-                        <td>{{getdata.tiffin_type}}</td>
-                        <td>{{getdata.subtiffin_type}}</td>
-                        <td>{{getdata.from_date}}</td>
-                        <td>{{getdata.to_date}}</td>
-                        <td>{{getdata.total_amount}}</td>
-
-                    </tr>
-                   {% endfor%}
-            </table>
-    </body>
+    <form method='POST'>
+        {% csrf_token %}
+        <label>Select your Items</label>
+        
+        <select id="name" onchange="myGeeks()"name="carmenu">
+            {% for res in alacartaorder%}
+            <option>{{res.amenu}}</option>
+            {% endfor%}
+            
+            
+        </select>
+        
+        <input type="text" id="email" placeholder="Enter Quantity"name="carqty">
+        <input type="text" id="amt" class="amt"disabled="true" placeholder="Amount"name="caramt">
+        <input type="button" class="add-row" value="Add Item" >
+    
+    <table id="table">
+        <thead>
+            <tr class="sum">
+                <th>Select</th>
+                <th>Item Selected</th>
+                <th>Quantity</th>
+                <th class="sum" id="sum1">Amount</th>
+            </tr>
+        </thead>
+        <tbody id="tb" class="tb1"></tbody>
+            
+    </table>
+    Total Rs:<input type="text" class="totalamount"id="totalamount"name="caramt"/><br><br>
+    <button type="button" class="delete-row">Delete Item</button>
+    
+    <button type="button" class="calc" onclick="calculateSum()">Grand Total</button>
+    <input type="submit" value="Place Order"/> 
+    {% if messages%}
+    {% for message in messages%}
+    <h2 style="color:green">{{message}}></h2>
+    {% endfor %}
+    {% endif %}
+    </form>
+</body> 
 </html>
+
