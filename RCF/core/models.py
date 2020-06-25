@@ -3,7 +3,7 @@ from django.db import connections
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-#
+
 
 from django.conf import settings
 
@@ -131,6 +131,7 @@ class ltdisplay(models.Model):
 class dtdisplay(models.Model):
 	dtid=models.IntegerField(primary_key=True)
 	Vegetarian=models.CharField(max_length=100)
+	Mixed=models.CharField(max_length=100)
 	Premium_Veg=models.CharField(max_length=100)
 	Premium_Mixed=models.CharField(max_length=100)
 	ddate=models.DateField()

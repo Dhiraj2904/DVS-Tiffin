@@ -163,4 +163,4 @@ class AdminLoginForm(forms.Form):
 class ContactForm(forms.Form):
     contact_name= forms.CharField(max_length=500, label="Name")
     contact_email= forms.EmailField(max_length=500, label="Email", required=True)
-    content= forms.CharField(label='',widget=forms.Textarea(attrs={'placeholder': 'Enter your comment here'}))
+    content= forms.CharField(label='',widget=forms.Textarea(attrs={'placeholder': 'Enter your comments here'}))

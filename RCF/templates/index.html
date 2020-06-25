@@ -17,83 +17,6 @@
             } 
         } 
 </script>
-</head>
-<style>
-   tr {
-     border-style:solid; 
-            border-width:1px; 
-            border-color:#000000; 
-            padding: 10px;
-    }
-  
-    th {
-      border-style:solid; 
-            border-width:1px; 
-            border-color:#000000; 
-            padding: 10px;
-      }
-      
-      
-    td {
-      border-style:solid; 
-            border-width:1px; 
-            border-color:#000000; 
-            padding: 10px;
-    }
-  
-    th, td {
-    
-}
-
-
-
-
-h1 {
-  font-family: Verdana;
-  font-weight: normal;
-  color: #024457;
-  span {color: #167F92;}
-}
-
-body{
-    background-color: #ff726f;
-    
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-label{
-    font-weight: bold;
-    font-size: 20px;
-}
-</style>
-
-
-<p align="center" style="font-weight: bold;font-size: 30px">Place you A-La-Carta order here...</p>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>A-La-Carta Order</title>
-<style>
-    form{
-        margin: 20px 0;
-    }
-    form input, button{
-        padding: 5px;
-    }
-    table{
-        width: 100%;
-        margin-bottom: 20px;
-        border-collapse: collapse;
-    }
-    table, th, td{
-        border: 1px solid #cdcdcd;
-    }
-    table th, table td{
-        padding: 10px;
-        text-align: left;
-    }
-</style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
     
@@ -133,12 +56,90 @@ label{
   
 </script>
 </head>
+<style>
+    
+   tr {
+     border-style:solid; 
+            border-width:1px; 
+            border-color:#000000; 
+            padding: 10px;
+    }
+  
+    th {
+      border-style:solid; 
+            border-width:1px; 
+            border-color:#000000; 
+            padding: 10px;
+      }
+      
+      
+    td {
+      border-style:solid; 
+            border-width:1px; 
+            border-color:#000000; 
+            padding: 10px;
+    }
+  
+    th, td {
+    
+}
+
+
+
+
+h1 {
+  font-family: Verdana;
+  font-weight: normal;
+  color: #024457;
+  span {color: #167F92;}
+}
+
+body{
+    background-color: white
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+label{
+    font-weight: bold;
+    font-size: 18px;
+}
+ form{
+        margin: 20px 0;
+    }
+    form input, button{
+        padding: 5px;
+    }
+    table{
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+    table, th, td{
+        border: 1px solid #cdcdcd;
+    }
+    table, th{
+        color: black
+    }
+    table th, table td{
+        padding: 10px;
+        text-align: left;
+    }
+</style>
+
+
+
+
+
+
+
 <body>
+    <p align="center" style="color:#fff !important;font-family: 'H', 'Trebuchet MS', Helvetica;font-size:30px;font-weight:bold;background-color: #7aba1e;height:60px;">Place you A-La-Carta order here...</p>
     <form method='POST'>
         {% csrf_token %}
         <label>Select your Items</label>
         
-        <select id="name" onchange="myGeeks()"name="carmenu">
+        <select id="name" onchange="myGeeks()"name="carmenu"style="height:30px;font-family: 'H', 'Trebuchet MS', Helvetica;font-size:18px;">
             {% for res in alacartaorder%}
             <option>{{res.amenu}}</option>
             {% endfor%}
@@ -146,11 +147,11 @@ label{
             
         </select>
         
-        <input type="text" id="email" placeholder="Enter Quantity"name="carqty">
-        <input type="text" id="amt" class="amt"disabled="true" placeholder="Amount"name="caramt">
-        <input type="button" class="add-row" value="Add Item" >
+        <input type="text" id="email" placeholder="Enter Quantity"name="carqty"style="font-size:16px;">
+        <input type="text" id="amt" class="amt"disabled="true" placeholder="Amount"name="caramt"hidden="true">
+        <input type="button" class="add-row" value="Add Item"style="font-size:16px;" />
     
-    <table id="table">
+    <table id="table"style="font-size: 18px">
         <thead>
             <tr class="sum">
                 <th>Select</th>
@@ -162,11 +163,13 @@ label{
         <tbody id="tb" class="tb1"></tbody>
             
     </table>
-    Total Rs:<input type="text" class="totalamount"id="totalamount"name="caramt"/><br><br>
-    <button type="button" class="delete-row">Delete Item</button>
+    <label>Total Rs.</label><input type="text" class="totalamount"id="totalamount"name="caramt"style="font-size:16px;"/><button type="button" class="calc" onclick="calculateSum()"style="font-size:16px;">Calculate Total</button><br><br>
+    <button type="button" class="delete-row"style="font-size:16px;">Delete Item</button>
     
-    <button type="button" class="calc" onclick="calculateSum()">Grand Total</button>
-    <input type="submit" value="Place Order"/> 
+    
+    <input type="submit" value="Place Order"style="font-size:16px;"/> 
+    <p style="font-size:20px">*Pay using Google Pay/Paytm/AmazonPay/PhonePay  Mobile No. 9529985345
+</p>
     {% if messages%}
     {% for message in messages%}
     <h2 style="color:green">{{message}}></h2>

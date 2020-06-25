@@ -15,77 +15,46 @@
 $("input[type=radio]").on("change", calcPrice);
 calcPrice();
 
-
-function incrementValue1()
-{
-    var value = parseInt(document.getElementById('number1').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('number1').value = value;}
-function incrementValue2()
-{
-    var value = parseInt(document.getElementById('number2').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('number2').value = value;}
-function incrementValue3()
-{
-    var value = parseInt(document.getElementById('number3').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('number3').value = value;}
-function incrementValue4()
-{
-    var value = parseInt(document.getElementById('number4').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('number4').value = value;}
-function incrementValue5()
-{
-    var value = parseInt(document.getElementById('number5').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('number5').value = value;
-}
-function incrementValue11()
-{
-    var value = parseInt(document.getElementById('number1').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value--;
-    document.getElementById('number1').value = value;}
-function incrementValue22()
-{
-    var value = parseInt(document.getElementById('number2').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value--;
-    document.getElementById('number2').value = value;}
-function incrementValue33()
-{
-    var value = parseInt(document.getElementById('number3').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value--;
-    document.getElementById('number3').value = value;}
-function incrementValue44()
-{
-    var value = parseInt(document.getElementById('number4').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value--;
-    document.getElementById('number4').value = value;}
-function incrementValue55()
-{
-    var value = parseInt(document.getElementById('number5').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value--;
-    document.getElementById('number5').value = value;
-
-}
-
-
 </script>
+
+
+<script>
+    $('#data tbody tr').each(function() {
+      var table = document.getElementById("data");
+      for(var i = 0; i < table.rows.length; i ++) {
+        var d = new Date(table.rows[i].cells[4].innerHTML).getTime();
+        var difference = new Date().getTime();
+        //console.log(((difference - d)/86400000));
+        if(d.getTime()>difference.getTime())
+          table.rows[i].style.background = "red";
+              }
+            }
+    </script>
+
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 
 <style>
+body{
+   background-color: white
+}
+  .footer
+
+{
+    height: 50px;
+    background-color: #323232;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center
+
+}
+.copyright-text{
+  color:white;
+  font-weight: normal;
+}
    .project-tab {
     padding: 10%;
     margin-top: -8%;
@@ -203,17 +172,7 @@ p {
   }
 }
 
-[type="date"] {
-  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
-}
-[type="date"]::-webkit-inner-spin-button {
-  display: none;
-}
-[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0;
-}
 
-/* custom styles */
 
 input {
   border: 1px solid #c4c4c4;
@@ -236,11 +195,11 @@ input {
 table {
   color: #333;
   font-size: .9em;
-  font-weight: 300;
-  line-height: 40px;
+  font-weight: 500;
+  line-height: 20px;
   border-collapse: separate;
   border-spacing: 0;
-  border: 2px solid #ed1c40;
+  border: 2px solid ;
   width: 500px;
   margin: 50px auto;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,.16);
@@ -316,6 +275,7 @@ input[type="button"]:hover:not(.active) {
   font-size: 30px;
 }
 
+
 </style>
 </head>
 <body>
@@ -326,16 +286,12 @@ input[type="button"]:hover:not(.active) {
                         <br>
                         <br>
 
-
-
 <div class="container">
-   
-    <hr>
     
     <div class="row">
         <div class="panel panel-primary filterable">
             <div class="panel-heading">
-                <h4 class="panel-title"style="color: yellow">Previous Orders</h4>
+                <h4 class="panel-title"style="color: red">Previous Orders</h4>
                 
             </div>
             <table border="1" class="table" id="data" style="width:70rem;background-color: white">
@@ -347,16 +303,22 @@ input[type="button"]:hover:not(.active) {
                         <th>From</th>
                         <th>To</th>
                         <th>Amount</th>
+                        <th>Review</th>
+                        <th>Status</th>
+                        <th>Cancel</th>
                     </tr>
-                    {% for getdata in OrderNow%}
+                    {% for getdata in OrderNow %}
                     <tr>
                         
                         <td>{{getdata.ordernow_id}}</td>
                         <td>{{getdata.tiffin_type}}</td>
                         <td>{{getdata.subtiffin_type}}</td>
                         <td>{{getdata.from_date}}</td>
-                        <td>{{getdata.to_date}}</td>
+                        <td class="dateRowEnd">{{getdata.to_date}}</td>
                         <td>{{getdata.total_amount}}</td>
+                        <td align='center'><form><input type=submit value="Submit Review" style="width:100%"></form></td>
+                        <td></td>
+                        <td align='center'><a href="/Delete/{{getdata.ordernow_id}}" onclick="return confirm('Are you sure you want to cancel this order?')">Delete</a></td>
 
                     </tr>
                    {% endfor%}
@@ -368,7 +330,26 @@ input[type="button"]:hover:not(.active) {
     </div>
 </div>
 
+<br>
+<br>
+<br>
+
+
+
+
+
+<div class='row'>
+  <div class='span12'>
+    <div class='footer'style="margin-bottom: -50px;position : absolute;
+    bottom : 0;">
+      <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by 
+        <a href="https://deepvalleysystems.com">Deep Valley Systems Pvt Ltd.</a>.
+      </p>
+    </div>
+  </div>
 </div>
+</body>
+</html>
 <script type="text/javascript">
 
 var $table = document.getElementById("data"),
@@ -435,158 +416,5 @@ function pageButtons($pCount,$cur) {
     return $buttons;
 }
 </script>
-
-<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-    
-   <select>
-        <option disabled="false" selected>--Select Tiffin Type--</option>
-        <option>School Tiffin</option>
-        <option>Office Tiffin</option>
-        <option>Lunch Tiffin</option>
-        <option>Dinner Tiffin</option>
-    </select>
-    <div class="radio-toolbar">
-    <input type="radio" id="radioApple" name="radioFruit" value="v" checked>
-    <label for="radioApple">Vegetarian</label>
-
-    <input type="radio" id="radioBanana" name="radioFruit" value="m">
-    <label for="radioBanana">Mixed</label>
-
-    <input type="radio" id="radioOrange" name="radioFruit" value="pv">
-    <label for="radioOrange">Premium Veg</label>
-
-    <input type="radio" id="radioOrange2" name="radioFruit" value="pm">
-    <label for="radioOrange2">Premium Mixed</label> 
-    </div>
-    <div class="grid-container">
-        {% for emp in menudisplay%}
-    <div>1{{emp.mname}}</div>
-    {% endfor%}
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
-    <div>5</div>
-    <div>6</div>
-    <div>7</div>
-    <div>8</div>
-    <div>9</div>
-    <div>10</div>
-    <div>11</div>
-  <div>12</div>
-  <div>13</div>
-  <div>14</div>
-  <div>15</div>
-  <div>16</div>
-  <div>17</div>
-  <div>18</div>
-  <div>19</div>  
-  <div>20</div>
-  <div>21</div>
-  <div>22</div>
-  <div>23</div>
-  <div>24</div>
-  <div>25</div>
-  <div>26</div>
-  <div>27</div>  
-  <div>28</div>
-  <div>29</div>
-  <div>30</div>
-  <div>31</div>
-  
-</div>
-</div>
-
-
-
-                                </table>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <footer class="page-footer font-small unique-color-dark">
-
-  <div style="background-color: yellow;height:0.1rem;">
-    <div class="container">
-
-    </div>
-  </div>
-
-  <div class="container text-center text-md-left mt-5">
-
-    <div class="row mt-3">
-
-      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" style="color:yellow">
-
-        <h6 class="text-uppercase font-weight-bold">Chapati Roti Factory</h6>
-        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-          consectetur
-          adipisicing elit.</p>
-
-      </div>
-
-      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4"style="color:yellow">
-
-        <!-- Links -->
-        <h6 class="text-uppercase font-weight-bold">Products</h6>
-        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>
-          <a href="#!"style="color:yellow">Veg Menu</a>
-        </p>
-        <p>
-          <a href="#!"style="color:yellow">Non-Veg Menu</a>
-        </p>
-        <p>
-          <a href="#!"style="color:yellow">Corporate Orders</a>
-        </p>
-
-      </div>
-
-      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4"style="color:yellow">
-
-        <h6 class="text-uppercase font-weight-bold">Useful links</h6>
-        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="color:yellow">
-        <p>
-          <a href="#!"style="color:yellow">Your Account</a>
-        </p>
-        <p>
-          <a href="#!"style="color:yellow">Menu Plans</a>
-        </p>
-        <p>
-          <a href="#!"style="color:yellow">Discounts</a>
-        </p>
-        <p>
-          <a href="#!"style="color:yellow">Support</a>
-        </p>
-
-      </div>
-      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"style="color:yellow">
-        <h6 class="text-uppercase font-weight-bold">Contact</h6>
-        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p>
-          <i class="fas fa-home mr-0"></i>Keshav Nagar, near Mundhwa Bridge, Pune-411014, Maharashtra, India</p>
-        <p>
-          <i class="fas fa-envelope mr-0"></i> info@example.com</p>
-        <p>
-          <i class="fas fa-phone mr-0"></i> +91- 9999999999 </p>
-        <p>
-          <i class="fas fa-print mr-0"></i> +91- 9999999999</p>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright text-center py-3"style="color:yellow">© 2020 Copyright:
-    <a href="https://deepvalleysystems.com/"> Deepvalleysystems.com</a>
-  </div>
-</footer>
-
-</body>
-</html>
-
 {% endblock %}
 ̣

@@ -202,8 +202,6 @@ function s68(){
 	})
 }
 
-var jobValue = document.getElementsById('v2')[0].value;
-$('#amt').val(jobValue)
 
 	
 	
@@ -214,7 +212,7 @@ function overlay() {
 }
 
 function update() {
-    document.getElementById('v1').value = document.getElementById('v2').value;
+    document.getElementById('amt').value = document.getElementById('v2').value;
 }
 
 
@@ -332,7 +330,7 @@ $('#date1').datepicker({
 
 
 #c1 div {
-    display:none;
+   
 }
 
 section {
@@ -451,14 +449,27 @@ hr{
     color:#FFF;
     border-bottom:2px dashed #337AB7;
  }
+
+ body{
+
+  background-color:white;
+ }
 </style>
 
 <body>
 
 <hr>
-<h2 style="color:yellow;font-size:25px">Select Meal Type</h2>
+<h2 style="color:red;font-size:25px">Select Meal Type</h2>
 <br>
-
+{% if messages %}
+  <ul class="messages">
+    {% for msg in messages %}
+    <li>
+      <div class="alert alert-success"> {{ msg }} </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
 <form method="POST"id="f1">
 	{% csrf_token %}
 
@@ -597,7 +608,7 @@ $('input[name="tiffin_type"]').change(function() {
 
 
 <hr>
-    <h2 style="color:yellow;font-size:25px">Select Veg or Non-Veg&hellip;</h2>
+    <h2 style="color:red;font-size:25px">Select Veg or Non-Veg&hellip;</h2>
 <section class="abc" style="display:inline-flex-center">
     <div class="unit-toggler">
         
@@ -646,7 +657,7 @@ $('input[name="tiffin_type"]').change(function() {
 <div>
 
 
-    <h2 style="text-align: center;color:yellow;font-size:25px">Select From and To dates&hellip;</h2><br>
+    <h2 style="text-align: center;color:red;font-size:25px">Select From and To dates&hellip;</h2><br>
   <input type="date" id="fdate"name="from_date" style="width:15rem"onchange="s66(),CalculateDiff(),s68()">
 
 
@@ -659,11 +670,13 @@ $('input[name="tiffin_type"]').change(function() {
 <br>
 <hr>
 
-	<p style="color:yellow;text-align: center">Price per Tiffin: Rs.<input type="text" id="v1" name="total_amount"style="width: 100px"></p>
-	
-	<p style="color:yellow;text-align: center">Total Amount: Rs.<input type="text" id="v2" name="total_amount2"style="width: 100px"/></p>
-	<input type="button" name="btn" value="View Summary" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"style="border-radius: 2rem"/>
-	<input type="submit" id="submitBtn"value="Order Now"/style="border-radius: 2rem"onclick="update()">
+
+  <p style="color:red;text-align: center">Price per Tiffin: Rs.<input type="text" id="v1" name="total_amount"style="width: 100px"disabled="true"></p>
+  <p style="color:red;text-align: center">GST 5%.<input type="text" id="gst" name="total_amount2"style="width: 100px"disabled="true"></p>
+  <p style="color:red;text-align: center">Total Amount: Rs.<input type="text" id="v2" name="total_amount"style="width: 100px"disabled="true"/></p>
+  <input type="button" name="btn" value="View Summary" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"style="border-radius: 2rem"/>
+  <input type="submit" id="submitBtn"value="Order Now"style="border-radius: 2rem"onclick="update()"/>
+  
 
 
 
@@ -679,18 +692,17 @@ $('input[name="tiffin_type"]').change(function() {
 <p>To:  <strong id="phoneM"></strong></p>
 <p>Total Amount: <strong id="addressM1"></strong> </p>
 <p>Your order details will be emailed to your registered email ID with us. Please check your email after placing the order. </p>
+<p>Pay using Google Pay/Paytm/AmazonPay/PhonePay  Mobile No. 9529985345
+</p>
 </div> <!-- end modal body -->
 <div class="modal-footer">
+  
 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 </div>
 </div>
 </div>
 </div>  <!-- end of modal -->
-
-</div> 
-
-
-
+</div>
 <script type="text/javascript">
 function CalculateDiff() {
  
@@ -700,13 +712,24 @@ var From_date = new Date($("#fdate").val());
 var To_date = new Date($("#tdate").val());
 var diff_date =  To_date - From_date;
  
-var days = Math.floor(diff_date /(1000 * 60 * 60 * 24));
-$("#v2").val(days* $("#v1").val())
+var days = Math.floor(diff_date /(1000 * 60 * 60 * 24)+1);
+//$("#gst").val(days * 0.05 * $("#v1").val())
+//var gstt=document.getElementById('gst').value;
+$("#v2").val(days * $("#v1").val());
+
+//var tot= document.getElementById('v2').value;
+//var final= parseInt(gstt)+ parseInt(tot);
+$("#amt").val(tot)
+//if(!isNaN(final)){
+//document.getElementById('v2').value= final;
+//}
+//$("#v2").val(($("#v2").val()) + ($("#gst").val())
 //alert( years+" year(s) "+months+" month(s) "+days+" and day(s)");
 }
 
 }
 </script>
+
 <br>
 
 {% if messages %}
@@ -743,14 +766,14 @@ $("#v2").val(days* $("#v1").val())
 
 <div class="form-group col-md-4">
 <label for="phone">Phone</label>
-<input type="tel" name="phone" id="phone" class="form-control" value="" />
+<input type="text" name="phone" id="phone" class="form-control" value="" />
 </div>
 </section> <!-- end of row -->
 
 
 <div class="form-group col-md-4">
 <label for="amt">amt</label>
-<input type="tel" name="amount" id="amt" class="form-control" value="" />
+<input type="text" name="amount" id="amt" class="form-control" value="" />
 </div>
 </section>
 
@@ -766,6 +789,8 @@ $("#v2").val(days* $("#v1").val())
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
 <!-- Display the input values in the modal -->
+
+
 <script>
 $('#submitBtn').click(function () {
 
@@ -779,7 +804,7 @@ $('#addressM1').html($('#amt').val());
 });
 
 $('#submit').click(function () {
-	$('#fnameM').html($('#fname').val());
+  $('#fnameM').html($('#fname').val());
 $('#lnameM').html($('#lname').val());
 $('#emailM').html($('#email').val());
 $('#phoneM').html($('#phone').val());
@@ -789,10 +814,9 @@ $('#addressM1').html($('#amt').val());
 alert('Your form has been submitted');
 $('#f1').submit();
 });
-
-
-
 </script>
+
+
 
 
 

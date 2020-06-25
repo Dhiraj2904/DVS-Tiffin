@@ -7,6 +7,16 @@
 <head>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
+
+
+$(document).ready(function() {
+           $('#dvPassport1').hide();
+           $('#dvPassport2').hide();
+           $('#dvPassport3').hide();
+           $('#dvPassport').show();
+});
+
+
   $(function () {
         $("#ddlPassport").change(function () {
             if ($(this).val() == "st") {
@@ -47,6 +57,10 @@
            
         });
     });
+
+
+
+
 </script>
 </head>
 <style>
@@ -99,7 +113,9 @@ input[type="button"]:hover:not(.active) {
   text-align: center;
   font-size: 30px;
 }
-
+body{
+  background-color: white
+}
 </style>
 <br>
 <br>
@@ -139,7 +155,7 @@ input[type="button"]:hover:not(.active) {
 </div>
 
 <div id="dvPassport1">
-        <table border="1" class="table" id="data" style="width:70rem;background-color: white">
+        <table border="1" class="table" id="data1" style="width:70rem;background-color: white">
                 <tbody>
                     <tr class="filters"style="background-color: yellow">
                       <th>Date</th>
@@ -162,7 +178,7 @@ input[type="button"]:hover:not(.active) {
             </table>
 </div>
 <div id="dvPassport2">
-        <table border="1" class="table" id="data" style="width:70rem;background-color: white">
+        <table border="1" class="table" id="data1" style="width:70rem;background-color: white">
                 <tbody>
                     <tr class="filters"style="background-color: yellow">
                       <th>Date</th>

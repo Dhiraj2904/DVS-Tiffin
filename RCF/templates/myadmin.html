@@ -4,29 +4,33 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Example of Auto Loading Bootstrap Modal on Page Load</title>
+<title>Chapati Roti Factory Admin</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
-	$(document).ready(function(){
-		$("#myModal").modal('show');
-	});
+	
 </script>
+<style>
+  
+    
+</style>
 </head>
 <body>
 <form method="POST" id="add_form" action="{% url 'loginpage' %}">{% csrf_token %}
-    {% block content %}
+    
+    <div class="container">
         Username:
-                <input type="text" name="username" value="" id="username" size="50" />
+                <input type="text" name="login" value="" placeholder="Username" class="form-control" id="login" maxlength="80" size="30">
             <br />
                 Password:
-                <input type="password" name="password" value="" id="password" size="50" />
+                <input type="password" name="password" value="" placeholder="Password" class="form-control" id="password" size="30">
                 <br />
         <input type="submit" name="submit" value="submit" />
+    </div>
     </form>
     
-    {% endblock %}
+    
 
 </body>
 </html>                            

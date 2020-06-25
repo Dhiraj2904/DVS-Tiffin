@@ -1,8 +1,8 @@
-Contact Name:
-{{ contact_name }}
+Name:
+{{ name }}
 
 Email:
-{{ contact_email }}
+{{ email }}
 
-Content:
-{{ contact_content }}
+Message:
+{{ message }}

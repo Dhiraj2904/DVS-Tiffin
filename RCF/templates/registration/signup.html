@@ -9,9 +9,20 @@
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
 }
+.footer
+{
+    height: 50px;
+    background-color: #323232;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+
+}
 
 body {
-  
+  background-color: white
 }
 .card{
   border-radius: 35px;
@@ -20,6 +31,7 @@ body {
   border: 0;
   border-radius: 3rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+
   
 }
 
@@ -53,7 +65,7 @@ body {
 
 .form-label-group {
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .form-label-group input {
@@ -149,8 +161,8 @@ body {
   <div class="col-lg-5 col-xl-3 mx-auto mt-5">
     <div class="card card-signin" style= "width: 25rem my-2 ">
 
-    <div class="card" style= "width: 25rem">
-      <div class="card-body mb-4">
+    <div class="card" style= "width: 25rem;background-color: #f5f5f5">
+      <div class="card-body">
         <div class="form-group">
   {% if messages %}
   <ul class="messages">
@@ -178,5 +190,14 @@ body {
   </div>
   </div>
 </div>
+</div>
+<div class='row'>
+  <div class='span12'>
+    <div class='footer'>
+      <p class="copyright-text" style="color:white">Copyright &copy; 2020 All Rights Reserved by 
+        <a href="https://deepvalleysystems.com">Deep Valley Systems Pvt Ltd.</a>.
+      </p>
+    </div>
+  </div>
 </div>
 {% endblock %}
