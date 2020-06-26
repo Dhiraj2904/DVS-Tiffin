@@ -330,7 +330,7 @@ $('#date1').datepicker({
 
 
 #c1 div {
-   
+  display:none;
 }
 
 section {
@@ -439,8 +439,8 @@ hr{
 }
 .modal-content {
     /* 80% of window height */
-    height: 60%;
-    background-color:#BBD6EC;
+    height: 80%;
+    background-color:#7aba1e;
 }
      
 .modal-header {
@@ -489,7 +489,7 @@ hr{
       <input type="radio" id="control_02" name="tiffin_type" value="Office Tiffin" onclick="s2()">
       <label class="radio-inline" for="control_02">
         <h2 style="font-size:20px">Office Tiffin</h2>
-        <img style="width:60px"src="https://cdn4.iconfinder.com/data/icons/school-icon-set-1/512/1-512.png">
+        <img style="width:60px"src="https://cdn.iconscout.com/icon/premium/png-256-thumb/office-manager-981093.png">
         <p>Monday to Friday<br>Delivery before 6:30am or as per instructions.<br> Non-Veg or Veg</p>
       </label>
       
@@ -671,11 +671,12 @@ $('input[name="tiffin_type"]').change(function() {
 <hr>
 
 
-  <p style="color:red;text-align: center">Price per Tiffin: Rs.<input type="text" id="v1" name="total_amount"style="width: 100px"disabled="true"></p>
-  <p style="color:red;text-align: center">GST 5%.<input type="text" id="gst" name="total_amount2"style="width: 100px"disabled="true"></p>
-  <p style="color:red;text-align: center">Total Amount: Rs.<input type="text" id="v2" name="total_amount"style="width: 100px"disabled="true"/></p>
+  <p style="color:red;text-align: center">Price per Tiffin: Rs.<input type="text" id="v1" name="total_amount"style="width: 100px"></p>
+  <p style="color:red;text-align: center">GST 5%<input type="text" id="gst" name="total_amount"style="width: 100px"></p>
+  <p style="color:red;text-align: center">Total Amount: Rs.<input type="text" id="v2" name="total_amount"style="width: 100px"/></p>
   <input type="button" name="btn" value="View Summary" id="submitBtn" data-toggle="modal" data-target="#confirm-submit"style="border-radius: 2rem"/>
-  <input type="submit" id="submitBtn"value="Order Now"style="border-radius: 2rem"onclick="update()"/>
+  
+
   
 
 
@@ -685,24 +686,27 @@ $('input[name="tiffin_type"]').change(function() {
 <div class="modal-content">
 
 <div class="modal-body"><h3>Your Order Details</h3>
+  <br>
 <!-- We display the details entered by the user here -->
-<p>Tiffin Type: <strong id="fnameM"></strong> </p>
-<p>Category:  <strong id="lnameM"></strong></p>
-<p>From: <strong id="emailM"></strong> </p>
-<p>To:  <strong id="phoneM"></strong></p>
-<p>Total Amount: <strong id="addressM1"></strong> </p>
-<p>Your order details will be emailed to your registered email ID with us. Please check your email after placing the order. </p>
-<p>Pay using Google Pay/Paytm/AmazonPay/PhonePay  Mobile No. 9529985345
+<p style="color:yellow">Tiffin Type:   <strong id="fnameM" style="color:white"></strong> </p>
+<p style="color:yellow">Category:  <strong id="lnameM"style="color:white"></strong></p>
+<p style="color:yellow">From: <strong id="emailM"style="color:white"></strong> </p>
+<p style="color:yellow">To:  <strong id="phoneM"style="color:white"></strong></p>
+<p style="color:yellow">Total Amount: Rs: <strong id="addressM1"style="color:white"></strong> </p><hr>
+<p style="color:white">*Note: Packaging is discounted for your order.</p>
+<p style="color:white">Your order details will be emailed to your registered email ID with us. Please check your email after placing the order. </p>
+<p style="color:white">Pay using Google Pay/Paytm/AmazonPay/PhonePay  Mobile No. 9529985345
 </p>
 </div> <!-- end modal body -->
 <div class="modal-footer">
-  
+ <input type="submit" id="submitBtn"value="Order Now"/style="border-radius: 2rem"onclick="update()"> 
 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 </div>
 </div>
 </div>
 </div>  <!-- end of modal -->
 </div>
+
 <script type="text/javascript">
 function CalculateDiff() {
  
@@ -713,22 +717,23 @@ var To_date = new Date($("#tdate").val());
 var diff_date =  To_date - From_date;
  
 var days = Math.floor(diff_date /(1000 * 60 * 60 * 24)+1);
-//$("#gst").val(days * 0.05 * $("#v1").val())
-//var gstt=document.getElementById('gst').value;
-$("#v2").val(days * $("#v1").val());
+$("#gst").val(days * 0.05 * $("#v1").val())
+var gstt=document.getElementById('gst').value;
+$("#v2").val(days * $("#v1").val())
 
-//var tot= document.getElementById('v2').value;
-//var final= parseInt(gstt)+ parseInt(tot);
+var tot= document.getElementById('v2').value;
+var final= parseInt(gstt)+ parseInt(tot);
 $("#amt").val(tot)
-//if(!isNaN(final)){
-//document.getElementById('v2').value= final;
-//}
-//$("#v2").val(($("#v2").val()) + ($("#gst").val())
+if(!isNaN(final)){
+document.getElementById('v2').value= final;
+}
+///$("#v2").val(($("#v2").val()) + ($("#gst").val())
 //alert( years+" year(s) "+months+" month(s) "+days+" and day(s)");
 }
 
 }
 </script>
+
 
 <br>
 
@@ -739,6 +744,32 @@ $("#amt").val(tot)
 {% endif %}
 </form>
 </div>
+
+
+<script>
+$('#submitBtn').click(function () {
+
+$('#fnameM').html($('#fname').val());
+$('#lnameM').html($('#lname').val());
+$('#emailM').html($('#email').val());
+$('#phoneM').html($('#phone').val());
+
+$('#addressM1').html($('#amt').val());
+
+});
+
+$('#submit').click(function () {
+  $('#fnameM').html($('#fname').val());
+$('#lnameM').html($('#lname').val());
+$('#emailM').html($('#email').val());
+$('#phoneM').html($('#phone').val());
+
+$('#addressM1').html($('#amt').val());
+/* when the submit button in the modal is clicked, submit the form */
+alert('Your form has been submitted');
+$('#f1').submit();
+});
+</script>
 
 
 

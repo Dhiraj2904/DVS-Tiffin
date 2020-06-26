@@ -63,7 +63,7 @@ class RegisterForm(forms.ModelForm):
 		    "name":"email"})
 		self.fields['society'].widget.attrs.update({
 		    'class': 'form-control',
-		    "name":"first_name"})
+		    "name":"society"})
 		self.fields['confirm_password'].widget.attrs.update({
 		    'class': 'form-control',
 		    "name":"confirm_password"})
@@ -78,7 +78,7 @@ class RegisterForm(forms.ModelForm):
 		confirm_password = self.cleaned_data.get("confirm_password")
 		username = self.cleaned_data.get("username")
 		password = self.cleaned_data.get("password")
-		society = self.cleaned_data.get("first_name")
+		society = self.cleaned_data.get("society")
 
 		if password != confirm_password:
 			raise forms.ValidationError("Passwords do not match")

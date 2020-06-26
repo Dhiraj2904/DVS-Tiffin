@@ -49,6 +49,7 @@ def save_all(request):
 
 
 def Insertrecord(request):
+
 	if request.method=='POST':
 		username=None
 		saverecord=OrderNow()
@@ -58,9 +59,11 @@ def Insertrecord(request):
 		saverecord.from_date=request.POST.get('from_date')
 		saverecord.to_date=request.POST.get('to_date')
 		saverecord.total_amount=request.POST.get('total_amount')
-	
-		#saverecord.author=User.objects.get(request.POST.get('username'))
-		saverecord.author=request.user
+		if request.user.is_authenticated:
+			saverecord.author=request.user
+			#saverecord.email=request.user
+		#if request.user.is_authenticated:
+			#author=request.user.username
 		saverecord.save()
 		
 		#messages.success(request, "Order Placed Succesfully")
@@ -147,8 +150,10 @@ def register_view(request):
 		#profile.save()
 		
 		username=form.cleaned_data.get("username")
-		password = form.cleaned_data.get("password")	
+		password = form.cleaned_data.get("password")
+		society=form.cleaned_data.get("society")
 		user.set_password(password)
+		#user.set_society(society)
 		user.save()
 		
 		messages.success(request, 'Account Registered Successfully!!')

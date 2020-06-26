@@ -304,7 +304,6 @@ input[type="button"]:hover:not(.active) {
                         <th>To</th>
                         <th>Amount</th>
                         <th>Review</th>
-                        <th>Status</th>
                         <th>Cancel</th>
                     </tr>
                     {% for getdata in OrderNow %}
@@ -317,7 +316,7 @@ input[type="button"]:hover:not(.active) {
                         <td class="dateRowEnd">{{getdata.to_date}}</td>
                         <td>{{getdata.total_amount}}</td>
                         <td align='center'><form><input type=submit value="Submit Review" style="width:100%"></form></td>
-                        <td></td>
+                       
                         <td align='center'><a href="/Delete/{{getdata.ordernow_id}}" onclick="return confirm('Are you sure you want to cancel this order?')">Delete</a></td>
 
                     </tr>

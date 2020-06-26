@@ -25,7 +25,8 @@ class Orders(models.Model):
 
 
 class OrderNow(models.Model):
-	author=models.ForeignKey(User, on_delete=models.CASCADE)
+	author=models.ForeignKey(User,to_field="username",on_delete=models.CASCADE)
+	#email=models.ForeignKey(User, to_field="email",on_delete=models.CASCADE,unique=True)
 	ordernow_id=models.IntegerField(primary_key=True)
 	tiffin_type=models.CharField(max_length=100)
 	subtiffin_type=models.CharField(max_length=100)
